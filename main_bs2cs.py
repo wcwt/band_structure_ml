@@ -57,8 +57,8 @@ def main():
         out_list_path_format="list/guess/crystalsystem_list_{}.txt"
     )
 
-    import winsound
-    winsound.Beep(200, 500)
+    #import winsound
+    #winsound.Beep(200, 500)
 
     # analyse
     function_analysis.print_result(
