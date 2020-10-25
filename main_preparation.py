@@ -15,7 +15,7 @@ if __name__ == "__main__":
             print(f"made dir \"{required_dir}\"")
         else:
             print(f"dir \"{required_dir}\" exists")
-
+    """
     # prepare input data # (Do this every time dataset is changed)
     function_list.create_valid_list_file(
         num_bands=100,
@@ -47,7 +47,7 @@ if __name__ == "__main__":
          out_list_path_format="list/actual/arithmeticcrystalclass_list_{}.txt",
          sgnum2outnum=lambda sgnum: arithmeticcrystalclass.arithmeticcrystalclass_number(sgnum)
      )
-
+    """
     function_list.create_any_actual_list_files(
         num_group=32, in_list_path="list/valid_list.txt",
         out_list_path_format="list/actual/pointgroup_list_{}.txt",
