@@ -1,16 +1,16 @@
  ## Instruction
- 1. change in_data_dir in main_preparation to specify the directory of data 
- 
+ 1. change in_data_dir in main_preparation to specify the directory of data
+
  2. run main_preparation to prepare directory and list files
- 
+
  3. run main_XX2XX to train the neural network and guess list files
- 
+
  4. run main_analysis to see confusion matrix
- 
+
 Confusion matrix:
 ![confusion_matrices](confusion_matrices.png)
 
-## Details 
+## Details
 ### Prepare data
 1. download data from [material project](https://materialsproject.org/) using [pymatgen](https://pymatgen.org/)'s api
 
@@ -23,7 +23,6 @@ Confusion matrix:
 4. main_preparation.py, function_list.py --- create a list for each spacegroup containing address of data in that spacegroup
     - 230 in total
     - the label of spacegroup is available in the json file downloaded
-
 
 
 ### Prepare training
@@ -83,4 +82,4 @@ Confusion matrix:
 2. evaluate performance, compare guessed result with answer --- main_analysis.py, function_analysis.py
     1. calculate True Positive, True Negative, False Positive, True Negative
     2. [calculate Accuracy, Precision, Sensitivity, etc.](https://towardsdatascience.com/accuracy-recall-precision-f-score-specificity-which-to-optimize-on-867d3f11124)
-    3. calculate confusion matrix 
+    3. calculate confusion matrix
