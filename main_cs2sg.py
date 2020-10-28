@@ -66,10 +66,10 @@ def main_one(csnum):
         in_list_paths=[f"list/actual/spacegroup_list_{sgnum}.txt" for sgnum in crystalsystem.spacegroup_number_range(csnum)],
         out_list_path_format="list/guess/spacegroup_list_{}.txt"
     )
-
+    """
     import winsound
     winsound.Beep(200, 500)
-
+    """
 
 if __name__ == '__main__':
     function_list.create_empty_list_files(230, out_list_path_format="list/guess/spacegroup_list_{}.txt")
