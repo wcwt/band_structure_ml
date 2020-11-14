@@ -8,28 +8,32 @@ import arithmeticcrystalclass
 import pointgroup
 
 if __name__ == '__main__':
-    # crystal system
-    function_analysis.print_result(
-        group_numbers=range(1, 8),
-        guess_list_dir="list/guess/",
-        actual_list_dir="list/actual/",
-        list_format="crystalsystem_list_{}.txt",
-        validate_size=0.1
-    )
+    mode = input("input mode")
+    if mode == 1:
+        # crystal system
+        function_analysis.print_result(
+            group_numbers=range(1, 8),
+            guess_list_dir="list/guess/",
+            actual_list_dir="list/actual/",
+            list_format="crystalsystem_list_{}.txt",
+            validate_size=0.1
+        )
 
-    def json2label(data_json):
-        data_label_np = np.array([crystalsystem.crystalsystem_number(data_json["number"]) - 1])
-        return data_label_np
-    plt.subplot(231)
-    function_analysis.plot_confusion(
-        json2label,
-        [f"list/guess/crystalsystem_list_{i}.txt" for i in range(1, 8)],
-        group_names=["TRI", "MCL", "ORC", "TET", "TRG", "HEX", "CUB"],
-        show_text=False
-    )
-    plt.gca().invert_yaxis()
-    plt.gca().xaxis.set_ticks_position('bottom')
-    plt.text(0.5, 1.02, "crystal system", horizontalalignment='center', fontsize=15, transform=plt.gca().transAxes)
+        def json2label(data_json):
+            data_label_np = np.array([crystalsystem.crystalsystem_number(data_json["number"]) - 1])
+            return data_label_np
+        plt.subplot(231)
+        function_analysis.plot_confusion(
+            json2label,
+            [f"list/guess/crystalsystem_list_{i}.txt" for i in range(1, 8)],
+            group_names=["TRI", "MCL", "ORC", "TET", "TRG", "HEX", "CUB"],
+            show_text=False
+        )
+        plt.gca().invert_yaxis()
+        plt.gca().xaxis.set_ticks_position('bottom')
+        plt.text(0.5, 1.02, "crystal system", horizontalalignment='center', fontsize=15, transform=plt.gca().transAxes)
+        plt.show()
+        exit()
 
     # bravais lattice
     function_analysis.print_result(
@@ -39,7 +43,6 @@ if __name__ == '__main__':
         list_format="bravaislattice_list_{}.txt",
         validate_size=0.1
     )
-
     def json2label(data_json):
         data_label_np = np.array([bravaislattice.bravaislattice_number(data_json["number"]) - 1])
         return data_label_np
