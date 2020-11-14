@@ -8,7 +8,7 @@ import arithmeticcrystalclass
 import pointgroup
 
 if __name__ == '__main__':
-    mode = input("input mode")
+    mode = int(input("input mode "))
     if mode == 1:
         # crystal system
         function_analysis.print_result(
