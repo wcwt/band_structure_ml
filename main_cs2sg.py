@@ -69,5 +69,8 @@ def main_one(csnum):
 
 if __name__ == '__main__':
     function_list.create_empty_list_files(230, out_list_path_format="list/guess/spacegroup_list_{}.txt")
+    """
     for i in range(1, 8):
         main_one(i)
+    """
+    main_one(6)
