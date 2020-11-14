@@ -54,7 +54,7 @@ def get_confusion(guess_list_paths, json2label):
     return confusion
 
 
-def plot_confusion(json2label, guess_list_paths, group_names=None, show_text: bool = True):
+def plot_confusion(json2label, guess_list_paths, group_names=None, show_text: bool = True,title=""):
     confusion = get_confusion(guess_list_paths, json2label)
     plt.matshow(confusion, fignum=False, cmap="cividis")
     num_group = len(guess_list_paths)
@@ -66,10 +66,11 @@ def plot_confusion(json2label, guess_list_paths, group_names=None, show_text: bo
     if group_names is not None:
         plt.xticks(range(num_group), group_names, fontsize=8)
         plt.yticks(range(num_group), group_names, fontsize=8)
+    plt.title(title)
     plt.gca().set_ylabel("Guess")
     plt.gca().set_xlabel("Actual")
 
 
-def show_confusion(json2label, guess_list_paths, group_names=None, show_text: bool = True):
-    plot_confusion(json2label, guess_list_paths, group_names, show_text)
+def show_confusion(json2label, guess_list_paths, group_names=None, show_text: bool = True,title=""):
+    plot_confusion(json2label, guess_list_paths, group_names, show_text,title=title)
     plt.show()
