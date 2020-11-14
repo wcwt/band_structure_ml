@@ -76,6 +76,7 @@ def main():
         json2label,
         [f"list/guess/crystalsystem_list_{i}.txt" for i in range(1, 8)],
         group_names=["TRI", "MCL", "ORC", "TET", "TRG", "HEX", "CUB"],
+        title="bs2cs"
     )
 
 
