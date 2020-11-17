@@ -62,10 +62,15 @@ def main():
         json2inputlabel, validate_size
     )
     #validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 32)
+    """
     loader = data_loader.get_validate_train_loader(dataset, 32)
     with open ("data.pickle","wb+") as f:
         pickle.dump(loader,f)
     exit()
+    """
+    with open ("data.pickle","rb") as f:
+        loader = pickle.load(f)
+    validate_loader, train_loader = laoder[0],loader[1]
     # train
     function_training.validate_train_loop(
         device, model, optimizer, scheduler, criterion, validate_loader, train_loader,
