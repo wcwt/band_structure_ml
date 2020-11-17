@@ -1,5 +1,5 @@
 import torch
-import data_loader 
+import data_loader
 
 def train_one_epoch(device, model, optimizer, criterion, train_loader):
     model.train()
@@ -47,7 +47,7 @@ def validate_one_epoch(device, model, criterion, validate_loader):
 
 
 def validate_train_loop(device, model, optimizer, scheduler, criterion, validate_loader, train_loader,
-                        num_epoch, num_epoch_per_validate, state_dict_path):
+                        num_epoch, num_epoch_per_validate, state_dict_path,dataset=""):
     result = validate_one_epoch(device, model, criterion, validate_loader)
     print("\rvalidate loss:{} accuracy:{}%".format(*result))
     for epoch in range(num_epoch):

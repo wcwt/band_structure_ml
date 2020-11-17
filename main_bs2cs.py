@@ -25,11 +25,12 @@ def main():
     model = torch.nn.Sequential(
         #torch.nn.LeakyReLU(),
         torch.nn.Linear(len(hs_indices)*num_bands, 128),
-        #torch.nn.LeakyReLU(),
+        torch.nn.LeakyReLU(),
         torch.nn.Linear(128, 64),
         torch.nn.LeakyReLU(),
         torch.nn.Linear(64, 7),
         #torch.nn.LeakyReLU(),
+        torch.nn.Softmax()
     )
 
     # https://pytorch.org/docs/stable/nn.html
