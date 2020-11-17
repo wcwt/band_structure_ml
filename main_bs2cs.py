@@ -16,8 +16,12 @@ def main():
     # prepare neural network
     validate_size = 0.1
     num_bands = 100
-    hs_indices = range(48)
-    
+    tmp = []
+    for hs in range(48):
+        tmp.append(hs)
+    hs_indices = tmp
+    #hs_indices = range(48)
+
     model = torch.nn.Sequential(
         torch.nn.LeakyReLU(),
         torch.nn.Linear(len(hs_indices)*num_bands, 1000),
