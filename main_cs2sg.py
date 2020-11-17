@@ -28,7 +28,7 @@ def main_one(csnum):
     model = torch.nn.Sequential(
         #torch.nn.LeakyReLU(),
         torch.nn.Linear(len(hs_indices)*num_bands, 64),
-        torch.nn.LeakyReLU(),
+        #torch.nn.LeakyReLU(),
         #torch.nn.Linear(64, 32),
         torch.nn.Conv1d(64, 32, 1),
         torch.nn.LeakyReLU(),
