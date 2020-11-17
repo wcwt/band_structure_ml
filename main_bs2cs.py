@@ -30,7 +30,7 @@ def main():
         torch.nn.LeakyReLU(),
         torch.nn.Linear(64, 7),
         #torch.nn.LeakyReLU(),
-        torch.nn.Softmax(dim=7),
+        #torch.nn.Softmax(dim=7),
     )
 
     # https://pytorch.org/docs/stable/nn.html
@@ -62,7 +62,7 @@ def main():
         json2inputlabel, validate_size
     )
     validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 32)
-
+    exit()
     # train
     function_training.validate_train_loop(
         device, model, optimizer, scheduler, criterion, validate_loader, train_loader,
