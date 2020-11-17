@@ -52,7 +52,7 @@ def validate_train_loop(device, model, optimizer, scheduler, criterion, validate
     if load_data:
         with open ("data.pickle","rb") as f:
             dataset = pickle.load(f)
-        validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 20)
+        validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 32)
     result = validate_one_epoch(device, model, criterion, validate_loader)
     print("\rvalidate loss:{} accuracy:{}%".format(*result))
     for epoch in range(num_epoch):
