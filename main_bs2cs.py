@@ -57,10 +57,12 @@ def main():
         data_input_np = np.array(data_json["bands"])[:, hs_indices].flatten().T
         data_label_np = np.array([crystalsystem.crystalsystem_number(data_json["number"]) - 1])
         return data_input_np, data_label_np
+    """
     dataset = data_loader.AnyDataset(
         [f"list/actual/crystalsystem_list_{csnum}.txt" for csnum in range(1, 8)],
         json2inputlabel, validate_size
     )
+    """
     #validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 32)
     """
     loader = data_loader.get_validate_train_loader(dataset, 32)
@@ -70,7 +72,7 @@ def main():
     """
     with open ("data.pickle","rb") as f:
         loader = pickle.load(f)
-    validate_loader, train_loader = laoder[0],loader[1]
+    validate_loader, train_loader = loader[0],loader[1]
     # train
     function_training.validate_train_loop(
         device, model, optimizer, scheduler, criterion, validate_loader, train_loader,
