@@ -24,11 +24,11 @@ def main():
 
     model = torch.nn.Sequential(
         #torch.nn.LeakyReLU(),
-        torch.nn.Linear(len(hs_indices)*num_bands, 128),
+        torch.nn.Linear(len(hs_indices)*num_bands, 64),
         torch.nn.LeakyReLU(),
-        torch.nn.Linear(128, 64),
+        torch.nn.Linear(64, 32),
         torch.nn.LeakyReLU(),
-        torch.nn.Linear(64, 7),
+        torch.nn.Linear(32, 7),
         #torch.nn.LeakyReLU(),
         #torch.nn.Softmax(dim=7),
     )
@@ -57,7 +57,7 @@ def main():
         data_input_np = np.array(data_json["bands"])[:, hs_indices].flatten().T
         data_label_np = np.array([crystalsystem.crystalsystem_number(data_json["number"]) - 1])
         return data_input_np, data_label_np
-
+    """
     dataset = data_loader.AnyDataset(
         [f"list/actual/crystalsystem_list_{csnum}.txt" for csnum in range(1, 8)],
         json2inputlabel, validate_size
@@ -66,13 +66,15 @@ def main():
     #validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 32)
     with open ("data.pickle","wb+") as f:
         pickle.dump(dataset,f)
-
-    validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 32)
+    """
+    with open ("data.pickle","rb") as f:
+        dataset = pickle.load(f)
+    validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 20)
 
     # train
     function_training.validate_train_loop(
         device, model, optimizer, scheduler, criterion, validate_loader, train_loader,
-        num_epoch=1, num_epoch_per_validate=1, state_dict_path="state_dicts/state_dict_bs2cs"
+        num_epoch=2, num_epoch_per_validate=1, state_dict_path="state_dicts/state_dict_bs2cs"
     )
 
     # apply
