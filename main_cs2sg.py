@@ -15,7 +15,11 @@ def main_one(csnum):
     # prepare neural network
     validate_size = 0.1
     num_bands = 100
-    hs_indices = [0, 1, 3, 4, 5, 7, 8, 13, 31, 34, 37]  # 11 hs points in Brillouin zone out of 40
+    tmp = []
+    for hs in range(48):
+        tmp.append(hs)
+    hs_indices = tmp
+    #hs_indices = [0, 1, 3, 4, 5, 7, 8, 13, 31, 34, 37]  # 11 hs points in Brillouin zone out of 40
 
     cs_sizes = crystalsystem.crystalsystem_sizes()
     output_size = cs_sizes[csnum - 1] - cs_sizes[csnum - 2] + 1 if csnum > 1 else 3
@@ -29,6 +33,7 @@ def main_one(csnum):
         torch.nn.Linear(100, output_size),
         torch.nn.LeakyReLU(),
     )
+
     model = model.to(device)
 
     optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
@@ -52,6 +57,9 @@ def main_one(csnum):
         [f"list/actual/spacegroup_list_{sgnum}.txt" for sgnum in crystalsystem.spacegroup_number_range(csnum)],
         json2inputlabel, validate_size
     )
+    with open ("data.pickle","wb+") as f:
+        dataset = pickle.dump(dataset,f)
+    exit()
     validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 32)
 
     # train
