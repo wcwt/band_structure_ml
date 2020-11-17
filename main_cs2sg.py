@@ -1,6 +1,7 @@
 import numpy as np
 import pickle
 import torch.nn.functional
+import matplotlib.pyplot as plt
 
 import data_loader
 import function_training
@@ -76,12 +77,16 @@ def main_one(csnum):
     validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 32)
 
     # train
-    function_training.validate_train_loop(
+    ech,loss,ech_a,acc = function_training.validate_train_loop(
         device, model, optimizer, scheduler, criterion, validate_loader, train_loader,
         num_epoch=15, num_epoch_per_validate=3, state_dict_path=f"state_dicts/state_dict_cs2sg_{csnum}"
         ,load_data=True
     )
-
+    plt.plot(ech,loss)
+    plt.savefig("loss.png")
+    plt.clf()
+    plt.plot(ech_a,acc)
+    plt.savefig("acc.png")
     # apply
     function_list.append_any_guess_list_files(
         device, model, hs_indices, validate_size, num_group=230,

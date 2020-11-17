@@ -49,6 +49,10 @@ def validate_one_epoch(device, model, criterion, validate_loader):
 
 def validate_train_loop(device, model, optimizer, scheduler, criterion, validate_loader, train_loader,
                         num_epoch, num_epoch_per_validate, state_dict_path,load_data = False):
+    ech = []
+    loss = []
+    ech_a = []
+    acc = []
     if load_data:
         with open ("data.pickle","rb") as f:
             dataset = pickle.load(f)
@@ -58,8 +62,13 @@ def validate_train_loop(device, model, optimizer, scheduler, criterion, validate
         validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 20)
         result = train_one_epoch(device, model, optimizer, criterion, train_loader)
         print("\rtrain epoch:{} loss:{}".format(epoch, result))
+        ech.append(epoch)
+        loss.append(result)
         if (epoch + 1) % num_epoch_per_validate == 0:
             result = validate_one_epoch(device, model, criterion, validate_loader)
             print("\rvalidate loss:{} accuracy:{}%".format(*result))
+            ech_a.append(epoch)
+            acc.append(result[1])
         scheduler.step()
     torch.save(model.state_dict, state_dict_path)
+    return ech,loss,ech_a,acc
