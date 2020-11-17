@@ -23,7 +23,7 @@ def main_one(csnum):
 
     cs_sizes = crystalsystem.crystalsystem_sizes()
     output_size = cs_sizes[csnum - 1] - cs_sizes[csnum - 2] + 1 if csnum > 1 else 3
-
+    """
     model = torch.nn.Sequential(
         #torch.nn.LeakyReLU(),
         torch.nn.Linear(len(hs_indices)*num_bands, 64),
@@ -44,7 +44,7 @@ def main_one(csnum):
         torch.nn.Linear(100, output_size),
         torch.nn.LeakyReLU(),
     )
-    """
+
     model = model.to(device)
 
     optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
@@ -78,7 +78,7 @@ def main_one(csnum):
     # train
     function_training.validate_train_loop(
         device, model, optimizer, scheduler, criterion, validate_loader, train_loader,
-        num_epoch=10, num_epoch_per_validate=3, state_dict_path=f"state_dicts/state_dict_cs2sg_{csnum}"
+        num_epoch=15, num_epoch_per_validate=3, state_dict_path=f"state_dicts/state_dict_cs2sg_{csnum}"
         ,load_data=True
     )
 
