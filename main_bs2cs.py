@@ -17,7 +17,7 @@ def main():
     validate_size = 0.1
     num_bands = 100
     hs_indices = range(48)
-
+    """
     model = torch.nn.Sequential(
         torch.nn.Flatten(),
         torch.nn.Dense(128,activation="relu"),
@@ -25,6 +25,8 @@ def main():
         torch.nn.Dense(7,activation="softmax"),
     )
     """
+    # https://pytorch.org/docs/stable/nn.html
+
     model = torch.nn.Sequential(
         torch.nn.LeakyReLU(),
         torch.nn.Linear(len(hs_indices)*num_bands, 1000),
@@ -34,7 +36,7 @@ def main():
         torch.nn.Linear(250, 7),
         torch.nn.LeakyReLU(),
     )
-    """
+    
     model = model.to(device)
 
     optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
