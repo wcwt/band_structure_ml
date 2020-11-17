@@ -30,7 +30,7 @@ def main_one(csnum):
         torch.nn.LeakyReLU(),
         torch.nn.Linear(64, 32),
         torch.nn.LeakyReLU(),
-        torch.nn.Linear(32, 7),
+        torch.nn.Linear(32, output_size),
         #torch.nn.LeakyReLU(),
         #torch.nn.Softmax(dim=7),
     )
