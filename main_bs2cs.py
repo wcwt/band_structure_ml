@@ -63,7 +63,7 @@ def main():
     )
     #validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 32)
     loader = data_loader.get_validate_train_loader(dataset, 32)
-    with open ("data.pickle","w+") as f:
+    with open ("data.pickle","wb+") as f:
         pickle.dump(loader,f)
     exit()
     # train
