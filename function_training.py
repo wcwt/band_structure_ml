@@ -55,7 +55,7 @@ def validate_train_loop(device, model, optimizer, scheduler, criterion, validate
     result = validate_one_epoch(device, model, criterion, validate_loader)
     print("\rvalidate loss:{} accuracy:{}%".format(*result))
     for epoch in range(num_epoch):
-        validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 32)
+        validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 20)
         result = train_one_epoch(device, model, optimizer, criterion, train_loader)
         print("\rtrain epoch:{} loss:{}".format(epoch, result))
         if (epoch + 1) % num_epoch_per_validate == 0:
