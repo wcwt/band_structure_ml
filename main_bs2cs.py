@@ -30,7 +30,7 @@ def main():
         torch.nn.LeakyReLU(),
         torch.nn.Linear(64, 7),
         #torch.nn.LeakyReLU(),
-        torch.nn.Softmax()
+        torch.nn.Softmax(),
     )
 
     # https://pytorch.org/docs/stable/nn.html
