@@ -23,13 +23,13 @@ def main():
     #hs_indices = range(48)
 
     model = torch.nn.Sequential(
+        #torch.nn.LeakyReLU(),
+        torch.nn.Linear(len(hs_indices)*num_bands, 128),
+        #torch.nn.LeakyReLU(),
+        torch.nn.Linear(128, 64),
         torch.nn.LeakyReLU(),
-        torch.nn.Linear(len(hs_indices)*num_bands, 1000),
-        torch.nn.LeakyReLU(),
-        torch.nn.Linear(1000, 250),
-        torch.nn.LeakyReLU(),
-        torch.nn.Linear(250, 7),
-        torch.nn.LeakyReLU(),
+        torch.nn.Linear(64, 7),
+        #torch.nn.LeakyReLU(),
     )
 
     # https://pytorch.org/docs/stable/nn.html
