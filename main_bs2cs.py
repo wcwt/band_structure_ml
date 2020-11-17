@@ -19,6 +19,13 @@ def main():
     hs_indices = range(48)
 
     model = torch.nn.Sequential(
+        torch.nn.Flatten(),
+        torch.nn.Dense(128,activation="relu"),
+        torch.nn.Dense(64,activation="relu"),
+        torch.nn.Dense(7,activation="softmax"),
+    )
+    """
+    model = torch.nn.Sequential(
         torch.nn.LeakyReLU(),
         torch.nn.Linear(len(hs_indices)*num_bands, 1000),
         torch.nn.LeakyReLU(),
@@ -27,6 +34,7 @@ def main():
         torch.nn.Linear(250, 7),
         torch.nn.LeakyReLU(),
     )
+    """
     model = model.to(device)
 
     optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
@@ -57,8 +65,6 @@ def main():
         out_list_path_format="list/guess/crystalsystem_list_{}.txt"
     )
 
-    #import winsound
-    #winsound.Beep(200, 500)
 
     # analyse
     function_analysis.print_result(
