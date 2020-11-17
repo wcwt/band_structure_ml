@@ -1,5 +1,5 @@
 import torch
-
+import data_loader 
 
 def train_one_epoch(device, model, optimizer, criterion, train_loader):
     model.train()
