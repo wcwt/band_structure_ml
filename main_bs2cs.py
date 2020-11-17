@@ -1,5 +1,5 @@
 import numpy as np
-
+import pickle
 import torch.nn.functional
 
 import data_loader
@@ -30,7 +30,7 @@ def main():
         torch.nn.LeakyReLU(),
         torch.nn.Linear(64, 7),
         #torch.nn.LeakyReLU(),
-        torch.nn.Softmax(),
+        torch.nn.Softmax(dim=7),
     )
 
     # https://pytorch.org/docs/stable/nn.html
