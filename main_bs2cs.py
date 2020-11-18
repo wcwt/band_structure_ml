@@ -74,7 +74,7 @@ def main():
     """
     with open ("data.pickle","rb") as f:
         dataset = pickle.load(f)
-    validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 64)
+    validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 20)
 
     # train
     ech,loss,ech_a,acc = function_training.validate_train_loop(
