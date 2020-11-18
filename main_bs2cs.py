@@ -75,7 +75,7 @@ def main():
     # train
     function_training.validate_train_loop(
         device, model, optimizer, scheduler, criterion, validate_loader, train_loader,
-        num_epoch=1, num_epoch_per_validate=1, state_dict_path="state_dicts/state_dict_bs2cs",load_data=True
+        num_epoch=3, num_epoch_per_validate=1, state_dict_path="state_dicts/state_dict_bs2cs",load_data=True
     )
 
     # apply
