@@ -41,11 +41,11 @@ def main():
 
     model = torch.nn.Sequential(
         torch.nn.LeakyReLU(),
-        torch.nn.Linear(len(hs_indices)*num_bands, 1000),
+        torch.nn.Linear(len(hs_indices)*num_bands, 320),
         torch.nn.LeakyReLU(),
-        torch.nn.Linear(1000, 250),
+        torch.nn.Linear(320, 128),
         torch.nn.LeakyReLU(),
-        torch.nn.Linear(250, 7),
+        torch.nn.Linear(128, 7),
         torch.nn.LeakyReLU(),
     )
 
