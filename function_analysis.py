@@ -73,4 +73,5 @@ def plot_confusion(json2label, guess_list_paths, group_names=None, show_text: bo
 
 def show_confusion(json2label, guess_list_paths, group_names=None, show_text: bool = True,title=""):
     plot_confusion(json2label, guess_list_paths, group_names, show_text,title=title)
+    plt.savefig("confus.png")
     plt.show()
