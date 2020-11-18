@@ -24,7 +24,7 @@ def main():
     """
     hs_indices = [0]
     #hs_indices = range(48)
-
+    """
     model = torch.nn.Sequential(
         #torch.nn.LeakyReLU(),
         torch.nn.Linear(len(hs_indices)*num_bands, 64),
@@ -35,10 +35,10 @@ def main():
         #torch.nn.LeakyReLU(),
         #torch.nn.Softmax(dim=7),
     )
-
+    """
     # https://pytorch.org/docs/stable/nn.html
 
-    """
+
     model = torch.nn.Sequential(
         torch.nn.LeakyReLU(),
         torch.nn.Linear(len(hs_indices)*num_bands, 1000),
@@ -48,10 +48,10 @@ def main():
         torch.nn.Linear(250, 7),
         torch.nn.LeakyReLU(),
     )
-    """
+
     model = model.to(device)
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
+    optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
     scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=1, gamma=0.75)
     criterion = torch.nn.CrossEntropyLoss()
 
@@ -60,7 +60,7 @@ def main():
         data_input_np = np.array(data_json["bands"])[:, hs_indices].flatten().T
         data_label_np = np.array([crystalsystem.crystalsystem_number(data_json["number"]) - 1])
         return data_input_np, data_label_np
-    
+
     dataset = data_loader.AnyDataset(
         [f"list/actual/crystalsystem_list_{csnum}.txt" for csnum in range(1, 8)],
         json2inputlabel, validate_size
@@ -78,7 +78,7 @@ def main():
     # train
     function_training.validate_train_loop(
         device, model, optimizer, scheduler, criterion, validate_loader, train_loader,
-        num_epoch=3, num_epoch_per_validate=1, state_dict_path="state_dicts/state_dict_bs2cs",load_data=True
+        num_epoch=20, num_epoch_per_validate=3, state_dict_path="state_dicts/state_dict_bs2cs",load_data=True
     )
 
     # apply
