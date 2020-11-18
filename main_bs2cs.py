@@ -8,6 +8,7 @@ import function_list
 
 import crystalsystem
 import function_analysis
+import matplotlib.pyplot as plt
 
 
 def main():
