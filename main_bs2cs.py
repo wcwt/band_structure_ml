@@ -22,7 +22,7 @@ def main():
         tmp.append(hs)
     hs_indices = tmp
     """
-    hs_indices = []
+    hs_indices = [0]
     #hs_indices = range(48)
 
     model = torch.nn.Sequential(
