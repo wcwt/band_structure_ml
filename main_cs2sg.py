@@ -47,7 +47,7 @@ def main_one(csnum):
         torch.nn.Linear(100, output_size),
         torch.nn.LeakyReLU(),
     )
-    
+
     model = model.to(device)
 
     optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
@@ -76,7 +76,7 @@ def main_one(csnum):
     with open ("data.pickle","rb") as f:
         dataset = pickle.load(f)
 
-    validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 64)
+    validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 32)
 
     # train
     ech,loss,ech_a,acc = function_training.validate_train_loop(
