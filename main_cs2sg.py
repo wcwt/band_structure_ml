@@ -67,12 +67,15 @@ def main_one(csnum):
         else:
             data_label_np = np.array([crystal_size])
         return data_input_np, data_label_np
-    """
+
     dataset = data_loader.AnyDataset(
         [f"list/actual/spacegroup_list_{sgnum}.txt" for sgnum in crystalsystem.spacegroup_number_range(csnum)],
         json2inputlabel, validate_size
     )
-    """
+
+    with open ("data.pickle","wb+") as f:
+        pickle.dump(dataset,f)
+    exit()
     with open ("data.pickle","rb") as f:
         dataset = pickle.load(f)
 
@@ -82,7 +85,7 @@ def main_one(csnum):
     ech,loss,ech_a,acc = function_training.validate_train_loop(
         device, model, optimizer, scheduler, criterion, validate_loader, train_loader,
         num_epoch=50, num_epoch_per_validate=1, state_dict_path=f"state_dicts/state_dict_cs2sg_{csnum}"
-        
+
     )
     plt.plot(ech,loss)
     plt.savefig("loss.png")
