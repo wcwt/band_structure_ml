@@ -59,6 +59,7 @@ def main_one(csnum):
     crystal_lower = crystalsystem.spacegroup_index_lower(csnum)
     crystal_size = crystal_upper - crystal_lower
 
+    """
     def json2inputlabel(data_json):
         data_input_np = np.array(data_json["bands"])[:, hs_indices].flatten().T
         sgnum = data_json["number"]
@@ -76,6 +77,8 @@ def main_one(csnum):
     with open ("data.pickle","wb+") as f:
         pickle.dump(dataset,f)
     exit()
+    """
+
     with open ("data.pickle","rb") as f:
         dataset = pickle.load(f)
 
@@ -84,7 +87,7 @@ def main_one(csnum):
     # train
     ech,loss,ech_a,acc = function_training.validate_train_loop(
         device, model, optimizer, scheduler, criterion, validate_loader, train_loader,
-        num_epoch=50, num_epoch_per_validate=1, state_dict_path=f"state_dicts/state_dict_cs2sg_{csnum}"
+        num_epoch=30, num_epoch_per_validate=1, state_dict_path=f"state_dicts/state_dict_cs2sg_{csnum}"
 
     )
     plt.plot(ech,loss)
