@@ -19,7 +19,7 @@ def sep_data(dataset,final_out):
         train.append([])
         count.append(0)
     for i in range(len(dataset)):
-        structure,ans = dataset[i][0],dataset[i][1]
+        structure,ans = dataset.data_inputs[i],dataset.data_labels[i]
         train[ans].append(structure)
         count[ans] += 1
     return train,np.array(count)
@@ -67,6 +67,3 @@ if __name__ == '__main__':
         for ele in spilt_data[i]:
             train_data.append(ele)
             train_label.append(torch.tensor([i]))
-
-
-
