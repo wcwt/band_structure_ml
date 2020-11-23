@@ -90,9 +90,15 @@ def main_one(csnum):
         num_epoch=30, num_epoch_per_validate=1, state_dict_path=f"state_dicts/state_dict_cs2sg_{csnum}"
     )
     plt.plot(ech,loss)
+    plt.xlabel("num of epoch")
+    plt.ylabel("loss")
+    plt.title("Loss Against Epoch")
     plt.savefig("loss.png")
     plt.clf()
     plt.plot(ech_a,acc)
+    plt.xlabel("num of epoch")
+    plt.ylabel("accuracy")
+    plt.title("Loss Against accuracy")
     plt.savefig("acc.png")
     # apply
     function_list.append_any_guess_list_files(
