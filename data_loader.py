@@ -10,6 +10,7 @@ from torch.utils.data.sampler import SubsetRandomSampler
 
 class AnyDataset(Dataset):
     def __init__(self, in_list_paths, json2inputlabel, validate_size):
+        self.validate_size = validate_size
         validate_inputs = []
         validate_labels = []
         train_inputs = []
@@ -40,6 +41,7 @@ class AnyDataset(Dataset):
         print(f"validate: {len(validate_inputs)}")
         self.data_inputs = [*validate_inputs, *train_inputs]
         self.data_labels = [*validate_labels, *train_labels]
+
         self.len = len(self.data_inputs)
         self.split = int(validate_size * self.len)
 
@@ -49,6 +51,9 @@ class AnyDataset(Dataset):
     def __getitem__(self, index):
         return self.data_inputs[index], self.data_labels[index]
 
+    def update_inform(self):
+        self.len = len(self.data_inputs)
+        self.split = int(self.validate_size * self.len)
 
 def get_validate_train_loader(dataset, batch_size):
     validate_sampler = SubsetRandomSampler(range(dataset.split))
