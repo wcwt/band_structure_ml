@@ -53,7 +53,7 @@ def main_one(csnum):
     optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
     scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=1, gamma=0.75)
     criterion = torch.nn.CrossEntropyLoss()
-
+    """
     # prepare data
     crystal_upper = crystalsystem.spacegroup_index_upper(csnum)
     crystal_lower = crystalsystem.spacegroup_index_lower(csnum)
@@ -76,7 +76,7 @@ def main_one(csnum):
 
     with open ("data.pickle","wb+") as f:
         pickle.dump(dataset,f)
-    
+    """
 
     with open ("data.pickle","rb") as f:
         dataset = pickle.load(f)
