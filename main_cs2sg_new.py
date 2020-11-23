@@ -39,12 +39,11 @@ def main_one(csnum):
     )
     """
     model = torch.nn.Sequential(
+        torch.nn.Linear(len(hs_indices)*num_bands, 300),
         torch.nn.LeakyReLU(),
-        torch.nn.Linear(len(hs_indices)*num_bands, 128),
+        torch.nn.Linear(300, 100),
         torch.nn.LeakyReLU(),
-        torch.nn.Linear(128, 32),
-        torch.nn.LeakyReLU(),
-        torch.nn.Linear(32, output_size),
+        torch.nn.Linear(100, output_size),
         torch.nn.LeakyReLU(),
     )
 
