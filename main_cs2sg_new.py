@@ -77,7 +77,7 @@ def main_one(csnum):
 
     with open ("data.pickle","rb") as f:
         dataset = pickle.load(f)
-    train_data,train_label = bf.balance(dataset,output_size,outlier=[])
+    train_data,train_label = bf.balance(dataset,output_size,outlier=[26])
 
     dataset.data_inputs = train_data
     dataset.data_labels = train_label
