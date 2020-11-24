@@ -84,12 +84,12 @@ def main_one(csnum):
     dataset.update_inform()
 
 
-    validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 32)
+    validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 32,outlier=[])
 
     # train
     ech,loss,ech_a,acc = function_training.validate_train_loop(
         device, model, optimizer, scheduler, criterion, validate_loader, train_loader,
-        num_epoch=30, num_epoch_per_validate=1, state_dict_path=f"state_dicts/state_dict_cs2sg_{csnum}"
+        num_epoch=1, num_epoch_per_validate=1, state_dict_path=f"state_dicts/state_dict_cs2sg_{csnum}"
     )
 
     plot(ech,loss,ech_a,acc,dataset,output_size)

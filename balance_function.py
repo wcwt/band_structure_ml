@@ -44,6 +44,7 @@ def balance_test(dataset,final_out,outlier = []):
 def balance(dataset,final_out,outlier = []):
     spilt_data,spilt_label = sep_data(dataset,final_out)
     count = count_dataset(spilt_data)
+    print(count)
     # get average
     avg = 0
     num = 0
@@ -73,4 +74,3 @@ if __name__ == '__main__':
         dataset = pickle.load(f)
         train_data,train_label = balance(dataset,28)
         print(len(train_data),len(train_label))
-        
