@@ -60,6 +60,8 @@ def main_one(csnum):
 
     dataset.data_inputs = train_data
     dataset.data_labels = train_label
+    print(train_label)
+    exit()
     dataset.update_inform()
 
 
