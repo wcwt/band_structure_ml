@@ -1,6 +1,10 @@
 import torch
 import data_loader
 import pickle
+from torch.utils.data import Dataset
+from torch.utils.data import DataLoader
+from torch.utils.data.sampler import SubsetRandomSampler
+
 
 def train_one_epoch(device, model, optimizer, criterion, train_loader):
     model.train()
@@ -22,8 +26,12 @@ def train_one_epoch(device, model, optimizer, criterion, train_loader):
     return round(loss_epoch, 4)
 
 
-def validate_one_epoch(device, model, criterion, validate_loader):
+def validate_one_epoch(device, model, criterion, validate_loader,reload=True):
     model.eval()
+    if reload:
+        with open ("data.pickle","rb") as f:
+            dataset = pickle.load(f)
+        validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 32)
     num_validate = len(validate_loader.sampler.indices)
     if num_validate == 0:
         print("number of data is 0")

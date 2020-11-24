@@ -1,0 +1,1 @@
+torch.save(model, PATH)
