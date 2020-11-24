@@ -37,20 +37,7 @@ def main_one(csnum):
 
     cs_sizes = crystalsystem.crystalsystem_sizes()
     output_size = cs_sizes[csnum - 1] - cs_sizes[csnum - 2] + 1 if csnum > 1 else 3
-    """
-    model = torch.nn.Sequential(
-        #torch.nn.LeakyReLU(),
-        torch.nn.Linear(len(hs_indices)*num_bands, 64),
-        #torch.nn.LeakyReLU(),
-        #torch.nn.Linear(64, 32),
 
-        torch.nn.Conv1d(64, [32], 1),
-        torch.nn.LeakyReLU(),
-        torch.nn.Linear(32, output_size),
-        #torch.nn.LeakyReLU(),
-        #torch.nn.Softmax(dim=7),
-    )
-    """
     model = torch.nn.Sequential(
         torch.nn.LeakyReLU(),
         torch.nn.Linear(len(hs_indices)*num_bands, 300),
@@ -67,31 +54,6 @@ def main_one(csnum):
     scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=1, gamma=0.75)
     criterion = torch.nn.CrossEntropyLoss()
 
-    # prepare data
-    crystal_upper = crystalsystem.spacegroup_index_upper(csnum)
-    crystal_lower = crystalsystem.spacegroup_index_lower(csnum)
-    crystal_size = crystal_upper - crystal_lower
-
-    """
-    def json2inputlabel(data_json):
-        data_input_np = np.array(data_json["bands"])[:, hs_indices].flatten().T
-        sgnum = data_json["number"]
-        if crystal_lower < sgnum - 1 < crystal_upper:
-            data_label_np = np.array([sgnum - 1 - crystal_lower])
-        else:
-            data_label_np = np.array([crystal_size])
-        return data_input_np, data_label_np
-
-    dataset = data_loader.AnyDataset(
-        [f"list/actual/spacegroup_list_{sgnum}.txt" for sgnum in crystalsystem.spacegroup_number_range(csnum)],
-        json2inputlabel, validate_size
-    )
-
-    with open ("data.pickle","wb+") as f:
-        pickle.dump(dataset,f)
-    exit()
-    """
-
     with open ("data.pickle","rb") as f:
         dataset = pickle.load(f)
 
@@ -104,6 +66,7 @@ def main_one(csnum):
     )
 
     plot(ech,loss,ech_a,acc)
+    return 0
     # apply
     function_list.append_any_guess_list_files(
         device, model, hs_indices, validate_size, num_group=230,
