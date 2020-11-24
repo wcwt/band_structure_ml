@@ -10,18 +10,29 @@ import function_list
 import crystalsystem
 
 
-def plot(ech,loss,ech_a,acc):
+def plot(ech,loss,ech_a,acc,dataset,output_size):
     plt.plot(ech,loss)
     plt.xlabel("num of epoch")
     plt.ylabel("loss")
     plt.title("Loss Against Epoch")
     plt.savefig("loss.png")
+    ##################################
     plt.clf()
     plt.plot(ech_a,acc)
     plt.xlabel("num of epoch")
     plt.ylabel("accuracy")
     plt.title("accuracy Against Epoch")
     plt.savefig("acc.png")
+    ##################################
+    plt.clf()
+    x = range(output_size)
+    y = np.zeros(output_size)
+    for label in dataset.data_labels:
+        y[int(label)] += 1
+    plt.bar(x,y)
+    plt.xlabel("space group num within Hex range")
+    plt.ylabel("num of data")
+    plt.title(f"Total_size = {len(dataset)}")
 
 def main_one(csnum):
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -71,7 +82,7 @@ def main_one(csnum):
         num_epoch=50, num_epoch_per_validate=1, state_dict_path=f"state_dicts/state_dict_cs2sg_{csnum}"
     )
 
-    plot(ech,loss,ech_a,acc)
+    plot(ech,loss,ech_a,acc,dataset)
     return 0
     # apply
     function_list.append_any_guess_list_files(
