@@ -5,7 +5,7 @@ from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 from torch.utils.data.sampler import SubsetRandomSampler
 with open ("data.pickle","rb") as f:
-    dataset = pickle.load(f)
+    dataset_local = pickle.load(f)
 
 def train_one_epoch(device, model, optimizer, criterion, train_loader):
     model.train()
@@ -30,7 +30,7 @@ def train_one_epoch(device, model, optimizer, criterion, train_loader):
 def validate_one_epoch(device, model, criterion, validate_loader,reload=True):
     model.eval()
     if reload:
-        validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 32)
+        validate_loader, train_loader = data_loader.get_validate_train_loader(dataset_local, 32)
     num_validate = len(validate_loader.sampler.indices)
     if num_validate == 0:
         print("number of data is 0")
