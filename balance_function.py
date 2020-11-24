@@ -16,20 +16,18 @@ def sep_data(dataset,final_out):
         label.append([])
     for i in range(len(dataset)):
         structure,ans = dataset.data_inputs[i],dataset.data_labels[i]
-        print(int(ans))
-        train[ans].append(structure)
-        label[ans].append(ans)
-    return train,
+        train[int(ans)].append(structure)
+        label[int(ans)].append(ans)
+    return train,label
 
 def balance(dataset,final_out,outlier = []):
-    spilt_data,count = sep_data(dataset,final_out)
+    spilt_data,label = sep_data(dataset,final_out)
     train_data = []
     train_label = []
-    for i in range(len(count)):
-        if count[i] == 0:   continue
-        for ele in spilt_data[i]:
-            train_data.append(ele)
-            train_label.append(torch.tensor([i]))
+    for i in range(len(spilt_data)):
+        for j in range(len(spilt_data[i])):
+            train_data.append(spilt_data[i][j])
+            train_label.append(label[i][j])
     return train_data,train_label
 
 
