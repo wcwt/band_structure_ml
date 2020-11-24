@@ -2,10 +2,6 @@ import numpy as np
 import pickle
 import torch
 
-with open ("data.pickle","rb") as f:
-    dataset = pickle.load(f)
-
-
 def count_dataset(spilt_data):
     count = []
     for i in range(len(spilt_data)):
@@ -14,17 +10,31 @@ def count_dataset(spilt_data):
 
 def sep_data(dataset,final_out):
     train = []
-    count = []
+    label = []
     for i in range(final_out):
         train.append([])
-        count.append(0)
+        label.append([])
     for i in range(len(dataset)):
         structure,ans = dataset.data_inputs[i],dataset.data_labels[i]
+        print(ans)
+        exit()
         train[ans].append(structure)
-        count[ans] += 1
-    return train,np.array(count)
+        label[ans].append(ans)
+    return train,
 
 def balance(dataset,final_out,outlier = []):
+    spilt_data,count = sep_data(dataset,final_out)
+    train_data = []
+    train_label = []
+    for i in range(len(count)):
+        if count[i] == 0:   continue
+        for ele in spilt_data[i]:
+            train_data.append(ele)
+            train_label.append(torch.tensor([i]))
+    return train_data,train_label
+
+
+def balance_final(dataset,final_out,outlier = []):
     spilt_data,count = sep_data(dataset,final_out)
     # get average
     avg = 0
