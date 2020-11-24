@@ -36,15 +36,15 @@ def data_append(spilt_data,spilt_label):
         j = count[i]-1
         if j < 0:  continue
         train_data.append(spilt_data[i][j])
-        train_label.append(label[i][j])
+        train_label.append(spilt_label[i][j])
         count[i] -= 1
     return train_data,train_label
 
 
 def balance(dataset,final_out,outlier = []):
-    spilt_data,label = sep_data(dataset,final_out)
+    spilt_data,spilt_label = sep_data(dataset,final_out)
 
-    return data_append(spilt_data,label)
+    return data_append(spilt_data,spilt_label)
 
 
 def balance_final(dataset,final_out,outlier = []):
