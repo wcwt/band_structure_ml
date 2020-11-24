@@ -38,7 +38,6 @@ def data_append(spilt_data,spilt_label):
 
 def balance(dataset,final_out,outlier = []):
     spilt_data,spilt_label = sep_data(dataset,final_out)
-
     return data_append(spilt_data,spilt_label)
 
 
