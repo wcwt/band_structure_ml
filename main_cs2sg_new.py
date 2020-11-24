@@ -21,7 +21,7 @@ def plot(ech,loss,ech_a,acc,dataset,output_size):
     plt.plot(ech_a,acc)
     plt.xlabel("num of epoch")
     plt.ylabel("accuracy")
-    plt.title("accuracy Against Epoch")
+    plt.title("accuracy Against Epoch {acc[-1]}%")
     plt.savefig("acc.png")
     ##################################
     plt.clf()
