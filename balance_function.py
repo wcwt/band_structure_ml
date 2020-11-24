@@ -73,3 +73,4 @@ if __name__ == '__main__':
         dataset = pickle.load(f)
         train_data,train_label = balance(dataset,28)
         print(len(train_data),len(train_label))
+        
