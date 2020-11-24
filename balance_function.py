@@ -20,15 +20,30 @@ def sep_data(dataset,final_out):
         label[int(ans)].append(ans)
     return train,label
 
-def balance(dataset,final_out,outlier = []):
-    spilt_data,label = sep_data(dataset,final_out)
+def data_append(spilt_data,spilt_label):
+    # data append part
     train_data = []
     train_label = []
-    for i in range(len(spilt_data)):
-        for j in range(len(spilt_data[i])):
-            train_data.append(spilt_data[i][j])
-            train_label.append(label[i][j])
+    count = count_dataset(spilt_data)
+    max_try = 0
+    while not count.any():
+        i = np.random.choice(range(len(count)))
+        max_try += 1
+        if max_try > 10000:
+            print("max_exceed")
+            break
+        j = count[i]
+        if j == 0:  continue
+        train_data.append(spilt_data[i][j])
+        train_label.append(label[i][j])
+        count[i] -= 1
     return train_data,train_label
+
+
+def balance(dataset,final_out,outlier = []):
+    spilt_data,label = sep_data(dataset,final_out)
+
+    return data_append(spilt_data,label)
 
 
 def balance_final(dataset,final_out,outlier = []):
