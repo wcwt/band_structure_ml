@@ -36,10 +36,6 @@ def data_append(spilt_data,spilt_label):
     return train_data,train_label
 
 
-def balance_test(dataset,final_out,outlier = []):
-    spilt_data,spilt_label = sep_data(dataset,final_out)
-    return data_append(spilt_data,spilt_label)
-
 
 def balance(dataset,final_out,outlier = []):
     spilt_data,spilt_label = sep_data(dataset,final_out)
