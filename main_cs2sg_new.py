@@ -93,7 +93,7 @@ def main_one(csnum):
     )
 
     plot(ech,loss,ech_a,acc,dataset,output_size)
-    return 0
+
     # apply
     function_list.append_any_guess_list_files(
         device, model, hs_indices, validate_size, num_group=230,
