@@ -10,6 +10,19 @@ import function_list
 import crystalsystem
 
 
+def plot(ech,loss,ech_a,acc):
+    plt.plot(ech,loss)
+    plt.xlabel("num of epoch")
+    plt.ylabel("loss")
+    plt.title("Loss Against Epoch")
+    plt.savefig("loss.png")
+    plt.clf()
+    plt.plot(ech_a,acc)
+    plt.xlabel("num of epoch")
+    plt.ylabel("accuracy")
+    plt.title("Loss Against accuracy")
+    plt.savefig("acc.png")
+
 def main_one(csnum):
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -89,17 +102,8 @@ def main_one(csnum):
         device, model, optimizer, scheduler, criterion, validate_loader, train_loader,
         num_epoch=5, num_epoch_per_validate=1, state_dict_path=f"state_dicts/state_dict_cs2sg_{csnum}"
     )
-    plt.plot(ech,loss)
-    plt.xlabel("num of epoch")
-    plt.ylabel("loss")
-    plt.title("Loss Against Epoch")
-    plt.savefig("loss.png")
-    plt.clf()
-    plt.plot(ech_a,acc)
-    plt.xlabel("num of epoch")
-    plt.ylabel("accuracy")
-    plt.title("Loss Against accuracy")
-    plt.savefig("acc.png")
+
+    plot(ech,loss,ech_a,acc)
     # apply
     function_list.append_any_guess_list_files(
         device, model, hs_indices, validate_size, num_group=230,
