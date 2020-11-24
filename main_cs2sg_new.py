@@ -62,7 +62,7 @@ def main_one(csnum):
 
     model = model.to(device)
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
+    optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
     scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=1, gamma=0.75)
     criterion = torch.nn.CrossEntropyLoss()
 
