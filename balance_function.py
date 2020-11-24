@@ -66,11 +66,5 @@ if __name__ == '__main__':
     with open ("data.pickle","rb") as f:
         dataset = pickle.load(f)
 
-    spilt_data,count = balance(dataset,27,outlier=[26])
-    train_data = []
-    train_label = []
-    for i in range(len(count)):
-        if count[i] == 0:   continue
-        for ele in spilt_data[i]:
-            train_data.append(ele)
-            train_label.append(torch.tensor([i]))
+        train_data,train_label = balance(dataset,28)
+        print(len(train_data),len(train_label))
