@@ -62,11 +62,11 @@ def main_one(csnum):
     """
     model = torch.nn.Sequential(
         #torch.nn.LeakyReLU(),
-        torch.nn.Linear(len(hs_indices)*num_bands, 64),
+        torch.nn.Linear(len(hs_indices)*num_bands, 128),
         torch.nn.LeakyReLU(),
-        torch.nn.Linear(64, 32),
+        torch.nn.Linear(128, 64),
         torch.nn.LeakyReLU(),
-        torch.nn.Linear(32, output_size),
+        torch.nn.Linear(64, output_size),
         #torch.nn.LeakyReLU(),
     )
     model = model.to(device)
