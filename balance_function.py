@@ -27,6 +27,7 @@ def data_append(spilt_data,spilt_label):
     count = count_dataset(spilt_data)
     max_try = 0
     while not count.any():
+        print("Hello")
         i = np.random.choice(range(len(count)))
         max_try += 1
         if max_try > 10000:
