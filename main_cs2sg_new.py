@@ -83,7 +83,7 @@ def main_one(csnum):
         num_epoch=2, num_epoch_per_validate=1, state_dict_path=f"state_dicts/state_dict_cs2sg_{csnum}"
     )
 
-    plot(ech,loss,ech_a,acc,dataset)
+    plot(ech,loss,ech_a,acc,dataset,output_size)
     return 0
     # apply
     function_list.append_any_guess_list_files(
