@@ -27,7 +27,7 @@ def train_one_epoch(device, model, optimizer, criterion, train_loader):
     return round(loss_epoch, 4)
 
 
-def validate_one_epoch(device, model, criterion, validate_loader,reload=False):
+def validate_one_epoch(device, model, criterion, validate_loader,reload=True):
     model.eval()
     if reload:
         validate_loader, train_loader = data_loader.get_validate_train_loader(dataset_local, 32)
