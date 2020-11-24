@@ -16,8 +16,7 @@ def sep_data(dataset,final_out):
         label.append([])
     for i in range(len(dataset)):
         structure,ans = dataset.data_inputs[i],dataset.data_labels[i]
-        print(ans)
-        exit()
+        print(int(ans))
         train[ans].append(structure)
         label[ans].append(ans)
     return train,
