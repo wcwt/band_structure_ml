@@ -26,7 +26,7 @@ def data_append(spilt_data,spilt_label):
     train_label = []
     count = count_dataset(spilt_data)
     max_try = 0
-    while not count.any():
+    while not np.any(count):
         print("Hello")
         i = np.random.choice(range(len(count)))
         max_try += 1
