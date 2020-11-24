@@ -36,13 +36,14 @@ def data_append(spilt_data,spilt_label):
     return train_data,train_label
 
 
-def balance(dataset,final_out,outlier = []):
+def balance_test(dataset,final_out,outlier = []):
     spilt_data,spilt_label = sep_data(dataset,final_out)
     return data_append(spilt_data,spilt_label)
 
 
-def balance_final(dataset,final_out,outlier = []):
-    spilt_data,count = sep_data(dataset,final_out)
+def balance(dataset,final_out,outlier = []):
+    spilt_data,spilt_label = sep_data(dataset,final_out)
+    count = count_dataset(spilt_data)
     # get average
     avg = 0
     num = 0
@@ -58,19 +59,14 @@ def balance_final(dataset,final_out,outlier = []):
         while count[i] < avg:
             add_index = np.random.choice(range(count[i]))
             spilt_data[i].append(spilt_data[i][add_index])
+            spilt_label[i].append(spilt_label[i][add_index])
             count[i] += 1
         while count[i] > avg:
             del_index = np.random.choice(range(count[i]))
             del spilt_data[i][del_index]
+            del spilt_label[i][del_index]
             count[i] -= 1
-    train_data = []
-    train_label = []
-    for i in range(len(count)):
-        if count[i] == 0:   continue
-        for ele in spilt_data[i]:
-            train_data.append(ele)
-            train_label.append(torch.tensor([i]))
-    return train_data,train_label
+    return data_append(spilt_data,spilt_label)
 
 if __name__ == '__main__':
     with open ("data.pickle","rb") as f:
