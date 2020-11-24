@@ -20,7 +20,7 @@ def plot(ech,loss,ech_a,acc):
     plt.plot(ech_a,acc)
     plt.xlabel("num of epoch")
     plt.ylabel("accuracy")
-    plt.title("Loss Against accuracy")
+    plt.title("accuracy Against Epoch")
     plt.savefig("acc.png")
 
 def main_one(csnum):
