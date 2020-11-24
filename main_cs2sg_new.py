@@ -33,6 +33,7 @@ def plot(ech,loss,ech_a,acc,dataset,output_size):
     plt.xlabel("space group num within Hex range")
     plt.ylabel("num of data")
     plt.title(f"Total_size = {len(dataset)}")
+    plt.savefig("distrubtion.png")
 
 def main_one(csnum):
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
