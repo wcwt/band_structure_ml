@@ -29,10 +29,6 @@ def data_append(spilt_data,spilt_label):
     while not np.all(count==0):
         print("Hello")
         i = np.random.choice(range(len(count)))
-        max_try += 1
-        if max_try > 10000:
-            print("max_exceed")
-            break
         j = count[i]-1
         if j < 0:  continue
         train_data.append(spilt_data[i][j])
