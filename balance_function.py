@@ -76,6 +76,5 @@ def balance_final(dataset,final_out,outlier = []):
 if __name__ == '__main__':
     with open ("data.pickle","rb") as f:
         dataset = pickle.load(f)
-
         train_data,train_label = balance(dataset,28)
         print(len(train_data),len(train_label))
