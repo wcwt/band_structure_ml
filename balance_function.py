@@ -33,8 +33,8 @@ def data_append(spilt_data,spilt_label):
         if max_try > 10000:
             print("max_exceed")
             break
-        j = count[i]
-        if j == 0:  continue
+        j = count[i]-1
+        if j < 0:  continue
         train_data.append(spilt_data[i][j])
         train_label.append(label[i][j])
         count[i] -= 1
