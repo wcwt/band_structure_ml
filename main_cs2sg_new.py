@@ -62,27 +62,28 @@ def main_one(csnum):
     """
     model = torch.nn.Sequential(
         #torch.nn.LeakyReLU(),
-        torch.nn.Linear(len(hs_indices)*num_bands, 128),
+        torch.nn.Linear(len(hs_indices)*num_bands, 300),
         torch.nn.LeakyReLU(),
-        torch.nn.Linear(128, 64),
+        torch.nn.Linear(300, 100),
         torch.nn.LeakyReLU(),
-        torch.nn.Linear(64, output_size),
+        torch.nn.Linear(100, output_size),
         #torch.nn.LeakyReLU(),
     )
     model = model.to(device)
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+    optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
     scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=1, gamma=0.75)
     criterion = torch.nn.CrossEntropyLoss()
 
     with open ("data.pickle","rb") as f:
         dataset = pickle.load(f)
+    """
     train_data,train_label = bf.balance(dataset,output_size)
 
     dataset.data_inputs = train_data
     dataset.data_labels = train_label
     dataset.update_inform()
-
+    """
 
     validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 32)
 
