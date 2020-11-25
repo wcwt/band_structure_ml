@@ -10,15 +10,13 @@ from torch.utils.data.sampler import SubsetRandomSampler
 
 
 class AnyDataset(Dataset):
-    def init_empty_class(validate_size):
-        self.validate_size = validate_size
-        self.data_inputs = []
-        self.data_labels = []
-        self.len = 0
-        self.split = 0
     def __init__(self, in_list_paths, json2inputlabel, validate_size, empty_class = False):
         if empty_class:
-            init_empty_class(validate_size)
+    i       self.validate_size = validate_size
+            self.data_inputs = []
+            self.data_labels = []
+            self.len = 0
+            self.split = 0
             return 0
         self.validate_size = validate_size
         validate_inputs = []
