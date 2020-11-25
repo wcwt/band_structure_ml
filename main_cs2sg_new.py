@@ -77,15 +77,24 @@ def main_one(csnum):
 
     with open ("data.pickle","rb") as f:
         dataset = pickle.load(f)
-    """
-    train_data,train_label = bf.balance(dataset,output_size)
 
+    print(f"Before cut off: \n{data_loader.view_count(dataset,output_size)}")
+    # data cut off and shuffle
+    train_data,train_label = bf.data_cutoff(dataset,output_size,cut_off=70)
+    data_loader.update_dataset(dataset,train_data,train_label)
+    print(f"after cut off: \n{data_loader.view_count(dataset,output_size)}")
+    exit()
+    """
     dataset.data_inputs = train_data
     dataset.data_labels = train_label
     dataset.update_inform()
-    validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 32)
     """
-    validate_loader, train_loader = data_loader.spilt_test_train_dataset(dataset, 32)
+    # spilt dataset
+    train_dataset,test_dataset = data_loader.spilt_train_test_dataset(dataset)
+    # balance train part
+
+    validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 32)
+
 
     # train
     ech,loss,ech_a,acc = function_training.validate_train_loop(
