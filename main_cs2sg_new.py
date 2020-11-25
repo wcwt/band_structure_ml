@@ -27,7 +27,7 @@ def plot_loss(ech,loss,ech_a,acc):
     plt.plot(ech_a,acc)
     plt.xlabel("num of epoch")
     plt.ylabel("accuracy")
-    plt.title(f"accuracy Against Epoch {acc[-1]}%")
+    plt.title(f"accuracy Against Epoch {np.max(acc)}%")
     plt.savefig(folder+"acc.png")
     ##################################
 def plot_dist(dataset,output_size,title=""):
