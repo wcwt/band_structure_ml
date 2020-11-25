@@ -10,8 +10,8 @@ import function_list
 import crystalsystem
 import os
 
-
-folder = "cut_off"
+dir = "report_graph/"
+folder = dir + "cut_off"
 if not os.path.exists(folder):
     os.makedirs(folder)
 folder = folder + "/"
@@ -33,9 +33,10 @@ def plot_loss(ech,loss,ech_a,acc):
 def plot_dist(dataset,output_size,title=""):
     plt.clf()
     x = range(output_size)
-    y = np.zeros(output_size)
-    for label in dataset.data_labels:
-        y[int(label)] += 1
+    y = view_count(dataset,output_size)
+    with open(f"{folder}{title}_distrubtion.txt","w+") as f:
+        for i in range(len(count)):
+            f.write(f"{i},{count[i]}")
     plt.bar(x,y)
     plt.xlabel("space group num within Hex range")
     plt.ylabel("num of data")
