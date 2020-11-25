@@ -105,10 +105,10 @@ def advanced_spilt_train_test_dataset(dataset,output_size):
     test_inp,train_inp = [],[]
     test_out,train_out = [],[]
     for i in range(len(count)):
-        test_inp = [*test_inp, *dataset.data_inputs[:count[i]] ]
-        test_out = [*test_out, *dataset.data_labels[:count[i]] ]
-        train_inp = [*train_inp,*dataset.data_inputs[count[i]:] ]
-        train_out = [*train_out, *dataset.data_labels[count[i]:]]
+        test_inp = spilt_data[i][:count[i]]
+        test_out = spilt_label[i][:count[i]]
+        train_inp = spilt_data[i][count[i]:]
+        train_out = spilt_label[i][count[i]:]
     test_dataset = AnyDataset("","",1,empty_class=True)
     update_dataset(test_dataset,test_inp,test_out)
     train_dataset = AnyDataset("","",0,empty_class=True)
