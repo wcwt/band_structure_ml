@@ -85,8 +85,9 @@ def spilt_test_train_dataset(dataset,batch_size):
     test_dataset = AnyDataset("","",dataset.validate_size,empty_class=True)
     test_dataset.data_inputs = dataset.data_inputs[:dataset.split]
     test_dataset.data_labels = dataset.data_labels[:dataset.split]
-
+    print(len(test_dataset.data_inputs))
     train_dataset = AnyDataset("","",0,empty_class=True)
     train_dataset.data_inputs = dataset.data_inputs[dataset.split:]
     train_dataset.data_labels = dataset.data_labels[:dataset.split:]
+    print(len(train_dataset.data_inputs))
     return get_train_loader(train_dataset,batch_size),get_validate_loader(test_dataset, batch_size)
