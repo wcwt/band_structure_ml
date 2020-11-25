@@ -106,12 +106,11 @@ def advanced_spilt_train_test_dataset(dataset,output_size):
     test_out,train_out = [],[]
     for i in range(len(count)):
         if count[i] == 0:   continue
-        print(spilt_data[i][:int(count[i])])
-        exit()
-        test_inp = spilt_data[i][:count[i]]
-        test_out = spilt_label[i][:count[i]]
-        train_inp = spilt_data[i][count[i]:]
-        train_out = spilt_label[i][count[i]:]
+        spilt = int(count[i])
+        test_inp = [*test_inp,*spilt_data[i][:spilt] ]
+        test_out = [*test_out,*spilt_label[i][:spilt] ]
+        train_inp = [*train_inp,*spilt_data[i][spilt:] ]
+        train_out = [*train_out,*spilt_label[i][spilt:] ]
 
     test_dataset = AnyDataset("","",1,empty_class=True)
     update_dataset(test_dataset,test_inp,test_out)
