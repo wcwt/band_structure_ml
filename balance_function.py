@@ -54,15 +54,15 @@ def balance_avg(dataset,output_size,outlier = []):
     for i in range(len(count)):
         if count[i]==0: continue
         while count[i] < avg:
+            count[i] += 1
             add_index = np.random.choice(range(count[i]))
             spilt_data[i].append(spilt_data[i][add_index])
             spilt_label[i].append(spilt_label[i][add_index])
-            count[i] += 1
         while count[i] > avg:
+            count[i] -= 1
             del_index = np.random.choice(range(count[i]))
             del spilt_data[i][del_index]
             del spilt_label[i][del_index]
-            count[i] -= 1
     return data_append(spilt_data,spilt_label)
 
 # delete data set with data sample < cut off
