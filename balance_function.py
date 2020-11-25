@@ -54,6 +54,7 @@ def balance_avg(dataset,output_size,outlier = []):
     for i in range(len(count)):
         if count[i]==0: continue
         while count[i] < avg:
+            break
             add_index = np.random.choice(range(count[i]))
             spilt_data[i].append(spilt_data[i][add_index])
             spilt_label[i].append(spilt_label[i][add_index])
