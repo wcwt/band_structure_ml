@@ -75,7 +75,7 @@ def main_one(csnum):
         torch.nn.Linear(128, 64),
         torch.nn.LeakyReLU(),
         torch.nn.Linear(64, output_size),
-        #torch.nn.LeakyReLU(),
+        torch.nn.LeakyReLU(),
     )
     model = model.to(device)
 
