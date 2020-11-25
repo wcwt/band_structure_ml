@@ -10,7 +10,7 @@ import function_list
 import crystalsystem
 
 
-def plot(ech,loss,ech_a,acc,dataset,output_size):
+def plot_loss(ech,loss,ech_a,acc):
     plt.plot(ech,loss)
     plt.xlabel("num of epoch")
     plt.ylabel("loss")
@@ -24,6 +24,7 @@ def plot(ech,loss,ech_a,acc,dataset,output_size):
     plt.title(f"accuracy Against Epoch {acc[-1]}%")
     plt.savefig("acc.png")
     ##################################
+def plot_dist(dataset,output_size,title=""):
     plt.clf()
     x = range(output_size)
     y = np.zeros(output_size)
@@ -33,7 +34,7 @@ def plot(ech,loss,ech_a,acc,dataset,output_size):
     plt.xlabel("space group num within Hex range")
     plt.ylabel("num of data")
     plt.title(f"Total_size = {len(dataset)}")
-    plt.savefig("distrubtion.png")
+    plt.savefig(f"{title} distrubtion.png")
 
 def main_one(csnum):
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -100,7 +101,9 @@ def main_one(csnum):
         num_epoch=20, num_epoch_per_validate=1, state_dict_path=f"state_dicts/state_dict_cs2sg_{csnum}"
     )
 
-    plot(ech,loss,ech_a,acc,train_dataset,output_size)
+    plot_loss(ech,loss,ech_a,acc)
+    plot_dist(train_dataset,output_size,title="Train sample")
+    plot_dist(test_dataset,output_size,title="Test sample")
 
     # apply
     function_list.append_any_guess_list_files(
