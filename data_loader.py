@@ -92,7 +92,7 @@ def spilt_test_train_dataset(dataset,batch_size):
     print("data size for test ",len(test_dataset.data_inputs))
     train_dataset = AnyDataset("","",0,empty_class=True)
     train_dataset.data_inputs = dataset.data_inputs[dataset.split:]
-    train_dataset.data_labels = dataset.data_labels[:dataset.split:]
+    train_dataset.data_labels = dataset.data_labels[dataset.split:]
     train_dataset.update_inform()
     print("data size for train",len(train_dataset.data_inputs))
     return get_validate_loader(test_dataset, batch_size),get_train_loader(train_dataset,batch_size)
