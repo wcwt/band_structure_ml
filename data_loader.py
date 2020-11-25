@@ -73,11 +73,13 @@ def get_validate_train_loader(dataset, batch_size):
 
 def get_train_loader(dataset, batch_size):
     train_sampler = SubsetRandomSampler(range(dataset.split, len(dataset)))
+    print(f"train range {dataset.split} to {len(dataset)-1}")
     train_loader = DataLoader(dataset, batch_size=batch_size, sampler=train_sampler)
     return train_loader
 
 def get_validate_loader(dataset, batch_size):
     validate_sampler = SubsetRandomSampler(range(dataset.split))
+    print(f"test range {0} to {dataset.split}")
     validate_loader = DataLoader(dataset, batch_size=batch_size, sampler=validate_sampler)
     return validate_loader
 
@@ -86,10 +88,10 @@ def spilt_test_train_dataset(dataset,batch_size):
     test_dataset.data_inputs = dataset.data_inputs[:dataset.split]
     test_dataset.data_labels = dataset.data_labels[:dataset.split]
     test_dataset.update_inform()
-    print(len(test_dataset.data_inputs))
+    print("data size for test ",len(test_dataset.data_inputs))
     train_dataset = AnyDataset("","",0,empty_class=True)
     train_dataset.data_inputs = dataset.data_inputs[dataset.split:]
     train_dataset.data_labels = dataset.data_labels[:dataset.split:]
     train_dataset.update_inform()
-    print(len(train_dataset.data_inputs))
+    print("data size for train",len(train_dataset.data_inputs))
     return get_train_loader(train_dataset,batch_size),get_validate_loader(test_dataset, batch_size)
