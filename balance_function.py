@@ -76,7 +76,7 @@ def balance_avg(dataset,output_size,outlier = []):
 # delete data set with data sample < cut off
 def data_cutoff(dataset,output_size,cut_off=0):
     spilt_data,spilt_label = sep_data(dataset,output_size)
-
+    count = count_dataset(spilt_data)
     #print(f"Before cut off: \n{count}")
     for i in range(len(count)):
         if count[i] < cut_off:
