@@ -57,6 +57,7 @@ class AnyDataset(Dataset):
         return self.len
 
     def __getitem__(self, index):
+        print(index)
         return self.data_inputs[index], self.data_labels[index]
 
     def update_inform(self):
@@ -79,7 +80,7 @@ def get_train_loader(dataset, batch_size):
 
 def get_validate_loader(dataset, batch_size):
     validate_sampler = SubsetRandomSampler(range(dataset.split))
-    print(f"test range {0} to {dataset.split}")
+    print(f"test range {0} to {dataset.split-1}")
     validate_loader = DataLoader(dataset, batch_size=batch_size, sampler=validate_sampler)
     return validate_loader
 
