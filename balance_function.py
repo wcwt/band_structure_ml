@@ -1,6 +1,7 @@
 import numpy as np
 import pickle
 import torch
+import data_loader
 
 def view_count(dataset,output_size):
     spilt_data,spilt_label = sep_data(dataset,output_size)
@@ -11,6 +12,8 @@ def count_dataset(spilt_data):
     for i in range(len(spilt_data)):
         count.append(len(spilt_data[i]))
     return np.array(count)
+
+
 
 def sep_data(dataset,output_size):
     train = []
@@ -37,6 +40,12 @@ def data_append(spilt_data,spilt_label):
         train_label.append(spilt_label[i][j])
         count[i] -= 1
     return train_data,train_label
+
+def shuffle_data(dataset,output_size):
+    train,label = sep_data(dataset,output_size)
+    train_data,train_label = data_append(train,label)
+    data_loader.update_dataset(dataset,train_data,train_label)
+
 
 def balance_avg(dataset,output_size,outlier = []):
     spilt_data,spilt_label = sep_data(dataset,output_size)

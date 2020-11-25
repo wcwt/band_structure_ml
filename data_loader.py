@@ -7,7 +7,7 @@ from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 from torch.utils.data.sampler import SubsetRandomSampler
 
-
+import balance_function as bf
 
 class AnyDataset(Dataset):
     def __init__(self, in_list_paths, json2inputlabel, validate_size, empty_class = False):
@@ -63,6 +63,10 @@ class AnyDataset(Dataset):
         self.len = len(self.data_inputs)
         self.split = int(self.validate_size * self.len)
 
+def update_dataset(dataset,data_inputs,data_labels):
+    dataset.data_inputs = data_inputs
+    dataset.data_labels = data_labels
+    dataset.update_inform()
 
 def get_validate_train_loader(dataset, batch_size):
     validate_sampler = SubsetRandomSampler(range(dataset.split))
@@ -95,7 +99,18 @@ def spilt_train_test_dataset(dataset):
     train_dataset.update_inform()
     return train_dataset,test_dataset
 
-def update_dataset(dataset,data_inputs,data_labels):
-    dataset.data_inputs = data_inputs
-    dataset.data_labels = data_labels
-    dataset.update_inform()
+def advanced_spilt_train_test_dataset(dataset,output_size):
+    spilt_data,spilt_label = bf.sep_data(dataset,output_size)
+    count = bf.count_dataset(spilt_data) * dataset.validate_size
+    test_inp,train_inp = [],[]
+    test_out,train_out = [],[]
+    for i in range(len(count)):
+        test_inp = [*test_inp, *dataset.data_inputs[:count[i]] ]
+        test_out = [*test_out, *dataset.data_labels[:count[i]] ]
+        train_inp = [*train_inp,*dataset.data_inputs[count[i]:] ]
+        train_out = [*train_out, *dataset.data_labels[count[i]:]]
+    test_dataset = AnyDataset("","",1,empty_class=True)
+    update_dataset(test_dataset,test_inp,test_out)
+    train_dataset = AnyDataset("","",0,empty_class=True)
+    update_dataset(train_dataset,train_inp,train_out)
+    return bf.shuffle(train_dataset,output_size),bf.shuffle_data(test_dataset,output_size)
