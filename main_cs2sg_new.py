@@ -33,7 +33,7 @@ def plot_loss(ech,loss,ech_a,acc):
 def plot_dist(dataset,output_size,title=""):
     plt.clf()
     x = range(output_size)
-    y = view_count(dataset,output_size)
+    y = bf.view_count(dataset,output_size)
     with open(f"{folder}{title}_distrubtion.txt","w+") as f:
         for i in range(len(count)):
             f.write(f"{i},{count[i]}")
