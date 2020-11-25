@@ -11,7 +11,7 @@ import crystalsystem
 import os
 
 dir = "report_graph/"
-folder = dir + "cut_off_70_advicedVailder_balanced"
+folder = dir + "cut_off_70_advicedVailder_balancedDelOnly"
 if not os.path.exists(folder):
     os.makedirs(folder)
 folder = folder + "/"

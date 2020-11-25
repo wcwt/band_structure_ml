@@ -43,7 +43,7 @@ def shuffle_data(dataset,output_size):
     train,label = sep_data(dataset,output_size)
     train_data,train_label = data_append(train,label)
     data_loader.update_dataset(dataset,train_data,train_label)
-    return dataset # actually no need to return 
+    return dataset # actually no need to return
 
 def balance_avg(dataset,output_size,outlier = []):
     spilt_data,spilt_label = sep_data(dataset,output_size)
@@ -61,6 +61,7 @@ def balance_avg(dataset,output_size,outlier = []):
     for i in range(len(count)):
         if count[i]==0: continue
         while count[i] < avg:
+            break
             add_index = np.random.choice(range(count[i]))
             spilt_data[i].append(spilt_data[i][add_index])
             spilt_label[i].append(spilt_label[i][add_index])
