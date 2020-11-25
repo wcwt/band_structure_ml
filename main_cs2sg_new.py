@@ -8,7 +8,13 @@ import function_training
 import function_list
 
 import crystalsystem
+import os
 
+
+folder = "cut_off"
+if not os.path.exists(folder):
+    os.makedirs(folder)
+folder = folder + "/"
 
 def plot_loss(ech,loss,ech_a,acc):
     plt.plot(ech,loss)
@@ -22,7 +28,7 @@ def plot_loss(ech,loss,ech_a,acc):
     plt.xlabel("num of epoch")
     plt.ylabel("accuracy")
     plt.title(f"accuracy Against Epoch {acc[-1]}%")
-    plt.savefig("acc.png")
+    plt.savefig(folder+"acc.png")
     ##################################
 def plot_dist(dataset,output_size,title=""):
     plt.clf()
@@ -34,7 +40,7 @@ def plot_dist(dataset,output_size,title=""):
     plt.xlabel("space group num within Hex range")
     plt.ylabel("num of data")
     plt.title(f"Total_size = {len(dataset)}")
-    plt.savefig(f"{title} distrubtion.png")
+    plt.savefig(f"{folder}{title}_distrubtion.png")
 
 def main_one(csnum):
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
