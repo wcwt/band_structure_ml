@@ -25,7 +25,6 @@ def data_append(spilt_data,spilt_label):
     train_data = []
     train_label = []
     count = count_dataset(spilt_data)
-    max_try = 0
     while not np.all(count==0):
         i = np.random.choice(range(len(count)))
         j = count[i]-1
@@ -69,8 +68,8 @@ def balance_cutoff(dataset,output_size,cut_off=0):
     print(f"Before cut off: \n{count}")
     for i in range(len(count)):
         if count[i] < cut_off:
-            del spilt_data[i]
-            del spilt_label[i]
+            spilt_data[i] = [] # empty it
+            spilt_label[i] = [] # empty it
     count = count_dataset(spilt_data)
     print(f"AFTER cut off: \n{count}")
     return data_append(spilt_data,spilt_label)
