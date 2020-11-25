@@ -78,11 +78,11 @@ def main_one(csnum):
     with open ("data.pickle","rb") as f:
         dataset = pickle.load(f)
 
-    print(f"Before cut off: \n{data_loader.view_count(dataset,output_size)}")
+    print(f"Before cut off: \n{bf.view_count(dataset,output_size)}")
     # data cut off and shuffle
     train_data,train_label = bf.data_cutoff(dataset,output_size,cut_off=70)
     data_loader.update_dataset(dataset,train_data,train_label)
-    print(f"after cut off: \n{data_loader.view_count(dataset,output_size)}")
+    print(f"after cut off: \n{bf.view_count(dataset,output_size)}")
     exit()
     """
     dataset.data_inputs = train_data
