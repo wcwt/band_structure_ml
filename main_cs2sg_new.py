@@ -21,7 +21,7 @@ def plot_loss(ech,loss,ech_a,acc):
     plt.xlabel("num of epoch")
     plt.ylabel("loss")
     plt.title("Loss Against Epoch")
-    plt.savefig("loss.png")
+    plt.savefig(folder+"loss.png")
     ##################################
     plt.clf()
     plt.plot(ech_a,acc)
