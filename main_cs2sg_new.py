@@ -36,7 +36,7 @@ def plot_dist(dataset,output_size,title=""):
     count = bf.view_count(dataset,output_size)
     with open(f"{folder}{title}_distrubtion.txt","w+") as f:
         for i in range(len(count)):
-            f.write(f"{i},{count[i]}")
+            f.write(f"{i},{count[i]}\n")
     plt.bar(x,count)
     plt.xlabel("space group num within Hex range")
     plt.ylabel("num of data")
