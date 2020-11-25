@@ -11,7 +11,7 @@ import crystalsystem
 import os
 
 dir = "report_graph/"
-folder = dir + "cut_off"
+folder = dir + "cut_off_70"
 if not os.path.exists(folder):
     os.makedirs(folder)
 folder = folder + "/"
@@ -98,9 +98,6 @@ def main_one(csnum):
     #print(f"Before balance:\n{bf.view_count(train_dataset,output_size)}")
     validate_loader = data_loader.get_validate_loader(test_dataset,32)
     train_loader = data_loader.get_train_loader(train_dataset,32)
-    #exit()
-    #validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 32)
-
 
     # train
     ech,loss,ech_a,acc = function_training.validate_train_loop(
