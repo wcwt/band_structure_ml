@@ -4,7 +4,7 @@ import torch
 
 def view_count(dataset,output_size):
     spilt_data,spilt_label = sep_data(dataset,output_size)
-    return ount_dataset(spilt_data)
+    return count_dataset(spilt_data)
 
 def count_dataset(spilt_data):
     count = []
