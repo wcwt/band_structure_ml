@@ -42,8 +42,8 @@ def data_append(spilt_data,spilt_label):
 def shuffle_data(dataset,output_size):
     train,label = sep_data(dataset,output_size)
     train_data,train_label = data_append(train,label)
-    return data_loader.update_dataset(dataset,train_data,train_label)
-
+    data_loader.update_dataset(dataset,train_data,train_label)
+    return dataset
 
 def balance_avg(dataset,output_size,outlier = []):
     spilt_data,spilt_label = sep_data(dataset,output_size)
