@@ -116,4 +116,4 @@ def advanced_spilt_train_test_dataset(dataset,output_size):
     update_dataset(test_dataset,test_inp,test_out)
     train_dataset = AnyDataset("","",0,empty_class=True)
     update_dataset(train_dataset,train_inp,train_out)
-    return bf.shuffle(train_dataset,output_size),bf.shuffle_data(test_dataset,output_size)
+    return bf.shuffle_data(train_dataset,output_size),bf.shuffle_data(test_dataset,output_size)

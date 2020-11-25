@@ -13,8 +13,6 @@ def count_dataset(spilt_data):
         count.append(len(spilt_data[i]))
     return np.array(count)
 
-
-
 def sep_data(dataset,output_size):
     train = []
     label = []
