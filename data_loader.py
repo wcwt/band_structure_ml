@@ -56,6 +56,8 @@ class AnyDataset(Dataset):
         self.len = len(self.data_inputs)
         self.split = int(self.validate_size * self.len)
 
+    def re_define
+
 def get_validate_train_loader(dataset, batch_size):
     validate_sampler = SubsetRandomSampler(range(dataset.split))
     train_sampler = SubsetRandomSampler(range(dataset.split, len(dataset)))

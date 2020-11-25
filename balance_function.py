@@ -8,10 +8,10 @@ def count_dataset(spilt_data):
         count.append(len(spilt_data[i]))
     return np.array(count)
 
-def sep_data(dataset,final_out):
+def sep_data(dataset,output_size):
     train = []
     label = []
-    for i in range(final_out):
+    for i in range(output_size):
         train.append([])
         label.append([])
     for i in range(len(dataset)):
@@ -35,10 +35,8 @@ def data_append(spilt_data,spilt_label):
         count[i] -= 1
     return train_data,train_label
 
-
-
-def balance(dataset,final_out,outlier = []):
-    spilt_data,spilt_label = sep_data(dataset,final_out)
+def balance_avg(dataset,output_size,outlier = []):
+    spilt_data,spilt_label = sep_data(dataset,output_size)
     count = count_dataset(spilt_data)
     # get average
     avg = 0
@@ -63,6 +61,20 @@ def balance(dataset,final_out,outlier = []):
             del spilt_label[i][del_index]
             count[i] -= 1
     return data_append(spilt_data,spilt_label)
+
+# delete data set with data sample < cut off
+def balance_cutoff(dataset,output_size,cut_off=0):
+    spilt_data,spilt_label = sep_data(dataset,output_size)
+    count = count_dataset(spilt_data)
+    for i in range(len(count)):
+        if count[i] < cut_off:
+            del spilt_data[i]
+            del spilt_label[i]
+    return data_append(spilt_data,spilt_label)
+
+def balance(dataset,output_size):
+    return balance_cutoff(dataset,output_size,cut_off=100)
+
 
 if __name__ == '__main__':
     with open ("data.pickle","rb") as f:
