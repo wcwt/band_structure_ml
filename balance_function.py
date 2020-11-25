@@ -66,13 +66,13 @@ def balance_avg(dataset,output_size,outlier = []):
 def balance_cutoff(dataset,output_size,cut_off=0):
     spilt_data,spilt_label = sep_data(dataset,output_size)
     count = count_dataset(spilt_data)
-    print(f"Before cut off: \n{count}"")
+    print(f"Before cut off: \n{count})
     for i in range(len(count)):
         if count[i] < cut_off:
             del spilt_data[i]
             del spilt_label[i]
     count = count_dataset(spilt_data)
-    print(f"AFTER cut off: \n{count}"")
+    print(f"AFTER cut off: \n{count}")
     return data_append(spilt_data,spilt_label)
 
 def balance(dataset,output_size):
