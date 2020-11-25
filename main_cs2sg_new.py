@@ -90,7 +90,8 @@ def main_one(csnum):
     data_in,data_out = bf.data_cutoff(dataset,output_size,cut_off=70)
     data_loader.update_dataset(dataset,data_in,data_out)
     # spilt dataset
-    train_dataset,test_dataset = data_loader.advanced_spilt_train_test_dataset(dataset)
+    #train_dataset,test_dataset = data_loader.spilt_train_test_dataset(dataset)
+    train_dataset,test_dataset = data_loader.advanced_spilt_train_test_dataset(dataset,output_size)
     # balance train part
     #train_in,train_out = bf.balance_avg(train_dataset,output_size)
     #print(f"Before balance:\n{bf.view_count(train_dataset,output_size)}")
