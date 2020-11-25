@@ -85,10 +85,12 @@ def main_one(csnum):
     train_dataset,test_dataset = data_loader.spilt_train_test_dataset(dataset)
     # balance train part
     train_in,train_out = bf.balance_avg(train_dataset,output_size,outlier=[26])
+    print(f"Before balance:\n{bf.view_count(train_dataset,output_size)}")
     data_loader.update_dataset(train_dataset,train_in,train_out)
-
+    print(f"Before balance:\n{bf.view_count(train_dataset,output_size)}")
     validate_loader = data_loader.get_train_loader(test_dataset,32)
     train_loader = data_loader.get_train_loader(train_dataset,32)
+    exit()
     #validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 32)
 
 
