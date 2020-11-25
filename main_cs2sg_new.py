@@ -79,11 +79,13 @@ def main_one(csnum):
         dataset = pickle.load(f)
     train_data,train_label = bf.balance(dataset,output_size)
 
+    """
     dataset.data_inputs = train_data
     dataset.data_labels = train_label
     dataset.update_inform()
-
     validate_loader, train_loader = data_loader.get_validate_train_loader(dataset, 32)
+    """
+    validate_loader, train_loader = data_loader.spilt_test_train_dataset(dataset, 32)
 
     # train
     ech,loss,ech_a,acc = function_training.validate_train_loop(
