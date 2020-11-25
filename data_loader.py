@@ -106,7 +106,7 @@ def advanced_spilt_train_test_dataset(dataset,output_size):
     test_out,train_out = [],[]
     for i in range(len(count)):
         if count[i] == 0:   continue
-        print(spilt_data[i][:count[i]])
+        print(spilt_data[i][:int(count[i])])
         exit()
         test_inp = spilt_data[i][:count[i]]
         test_out = spilt_label[i][:count[i]]
