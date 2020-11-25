@@ -102,6 +102,7 @@ def main_one(csnum):
     )
 
     plot_loss(ech,loss,ech_a,acc)
+    plot_dist(dataset,output_size,title="Cut-off Raw sample")
     plot_dist(train_dataset,output_size,title="Train sample")
     plot_dist(test_dataset,output_size,title="Test sample")
 
