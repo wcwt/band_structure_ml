@@ -112,14 +112,14 @@ def main_one(csnum):
     plot_dist(dataset,output_size,title="Cut-off Raw sample")
     plot_dist(train_dataset,output_size,title="Train sample")
     plot_dist(test_dataset,output_size,title="Test sample")
-
+    """
     # apply
     function_list.append_any_guess_list_files(
         device, model, hs_indices, validate_size, num_group=230,
         in_list_paths=[f"list/actual/spacegroup_list_{sgnum}.txt" for sgnum in crystalsystem.spacegroup_number_range(csnum)],
         out_list_path_format="list/guess/spacegroup_list_{}.txt"
     )
-
+    """
 if __name__ == '__main__':
     function_list.create_empty_list_files(230, out_list_path_format="list/guess/spacegroup_list_{}.txt")
     """
