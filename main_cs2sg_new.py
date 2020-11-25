@@ -11,7 +11,7 @@ import crystalsystem
 import os
 
 dir = "report_graph/"
-folder = dir + "cut_off_0_advicedVailder_balancedDelOnly"
+folder = dir + "cut_off_70_advicedVailder_balancedDelOnly_newmodel"
 if not os.path.exists(folder):
     os.makedirs(folder)
 folder = folder + "/"
@@ -87,7 +87,7 @@ def main_one(csnum):
         dataset = pickle.load(f)
 
     # data cut off and shuffle
-    data_in,data_out = bf.data_cutoff(dataset,output_size,cut_off=0)
+    data_in,data_out = bf.data_cutoff(dataset,output_size,cut_off=70)
     data_loader.update_dataset(dataset,data_in,data_out)
     # spilt dataset
     #train_dataset,test_dataset = data_loader.spilt_train_test_dataset(dataset)
