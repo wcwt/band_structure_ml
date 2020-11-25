@@ -57,7 +57,6 @@ class AnyDataset(Dataset):
         return self.len
 
     def __getitem__(self, index):
-        print(index)
         return self.data_inputs[index], self.data_labels[index]
 
     def update_inform(self):
