@@ -9,6 +9,19 @@ import function_list
 
 import crystalsystem
 import os
+
+# prepare neural network
+validate_size = 0.1
+num_bands = 100
+tmp = []
+for hs in range(48):
+    tmp.append(hs)
+hs_indices = tmp
+#hs_indices = [0, 1, 3, 4, 5, 7, 8, 13, 31, 34, 37]  # 11 hs points in Brillouin zone out of 40
+
+cs_sizes = crystalsystem.crystalsystem_sizes()
+output_size = cs_sizes[csnum - 1] - cs_sizes[csnum - 2] + 1 if csnum > 1 else 3
+
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 model = torch.nn.Sequential(
     #torch.nn.LeakyReLU(),
