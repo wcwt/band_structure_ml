@@ -11,6 +11,7 @@ import crystalsystem
 import os
 
 # prepare neural network
+csnum = 7
 validate_size = 0.1
 num_bands = 100
 tmp = []
