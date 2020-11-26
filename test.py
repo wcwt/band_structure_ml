@@ -68,10 +68,14 @@ def validate_one_epoch(device, model, criterion, validate_loader):
             # read data
             data_input, data_label = batch_input[i], batch_label[i]
             print(data_input)
-            exit()
+            print(data_label)
+            print("******************")
             data_input, data_label = data_input.to(device), data_label.to(device)
             # feed
             output = model(data_input).view(1, -1)
+            print(output)
+            print(torch.max(output, 1))
+            exit()
             # record fitness
             val_loss += criterion(output, data_label).item()
             if torch.max(output, 1)[1] == data_label:
