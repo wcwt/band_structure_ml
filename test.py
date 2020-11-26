@@ -75,6 +75,7 @@ def validate_one_epoch(device, model, criterion, validate_loader):
             output = model(data_input).view(1, -1)
             print(output)
             print(torch.max(output, 1))
+            print(f"predict {torch.max(output, 1)[1]}")
             exit()
             # record fitness
             val_loss += criterion(output, data_label).item()
