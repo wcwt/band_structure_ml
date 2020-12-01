@@ -11,7 +11,7 @@ import crystalsystem
 import os
 
 dir = "report_graph/"
-folder = dir + "original_spilt_new"
+folder = dir + "original_spilt"
 if not os.path.exists(folder):
     os.makedirs(folder)
 folder = folder + "/"
