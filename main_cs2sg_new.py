@@ -59,7 +59,7 @@ def main_one(csnum):
 
     cs_sizes = crystalsystem.crystalsystem_sizes()
     output_size = cs_sizes[csnum - 1] - cs_sizes[csnum - 2] + 1 if csnum > 1 else 3
-
+    """
     model = torch.nn.Sequential(
         torch.nn.LeakyReLU(),
         torch.nn.Linear(len(hs_indices)*num_bands, 300),
@@ -70,6 +70,7 @@ def main_one(csnum):
         torch.nn.LeakyReLU(),
     )
     """
+
     model = torch.nn.Sequential(
         #torch.nn.LeakyReLU(),
         torch.nn.Linear(len(hs_indices)*num_bands, 128),
@@ -79,7 +80,7 @@ def main_one(csnum):
         torch.nn.Linear(64, output_size),
         torch.nn.LeakyReLU(),
     )
-    """
+    
     model = model.to(device)
 
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
