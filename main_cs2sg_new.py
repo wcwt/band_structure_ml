@@ -80,7 +80,7 @@ def main_one(csnum):
         torch.nn.Linear(64, output_size),
         torch.nn.LeakyReLU(),
     )
-    
+
     model = model.to(device)
 
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
