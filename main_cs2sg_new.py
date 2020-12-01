@@ -22,6 +22,8 @@ def plot_loss(ech,loss,ech_a,acc):
     plt.ylabel("loss")
     plt.title("Loss Against Epoch")
     plt.savefig(folder+"loss.png")
+    with open(folder + "plot_element.pickle","w+") as f:
+        pickle.dump([ech,loss,ech_a,acc],f)
     ##################################
     plt.clf()
     plt.plot(ech_a,acc)
