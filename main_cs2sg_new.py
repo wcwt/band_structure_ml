@@ -2,6 +2,7 @@ import numpy as np
 import pickle
 import torch.nn.functional
 import matplotlib.pyplot as plt
+matplotlib.use('Agg')
 import balance_function as bf
 import data_loader
 import function_training
@@ -109,7 +110,7 @@ def main_one(csnum):
     # train
     ech,loss,ech_a,acc = function_training.validate_train_loop(
         device, model, optimizer, scheduler, criterion, validate_loader, train_loader,
-        num_epoch=30, num_epoch_per_validate=1, state_dict_path=f"state_dicts/state_dict_cs2sg_{csnum}"
+        num_epoch=1, num_epoch_per_validate=1, state_dict_path=f"state_dicts/state_dict_cs2sg_{csnum}"
     )
 
     plot_loss(ech,loss,ech_a,acc)
