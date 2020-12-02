@@ -1,8 +1,9 @@
 import numpy as np
 import pickle
 import torch.nn.functional
-import matplotlib.pyplot as plt
+improt matplotlib
 matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 import balance_function as bf
 import data_loader
 import function_training
