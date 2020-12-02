@@ -1,7 +1,7 @@
 import numpy as np
 import pickle
 import torch.nn.functional
-improt matplotlib
+import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import balance_function as bf
